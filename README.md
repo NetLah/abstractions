@@ -54,7 +54,7 @@ AppTitle:SampleApp
 Version:0.0.0-alpha.0.1 BuildTime:2021-05-09T12:26:56+08:00; Framework:.NETCoreApp,Version=v5.0
 ```
 
-### 4. Use Directory.Build.props to declare build date attribute to all projects inside the solution
+### 4. Use `Directory.Build.props` to declare build date attribute to all projects inside the solution
 
 ```
 <Project>

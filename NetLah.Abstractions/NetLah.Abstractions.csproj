@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>NetLah.Abstractions</PackageId>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Description>.NET common class such as ApplicationInfo, AssemblyInfo, AssemblyBuildDateAttribute</Description>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../NetLah.snk</AssemblyOriginatorKeyFile>
+    <RootNamespace>NetLah</RootNamespace>
+    <AssemblyName>NetLah.Abstractions</AssemblyName>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE" Pack="true" PackagePath=""/>
+  </ItemGroup>
+
+</Project>
