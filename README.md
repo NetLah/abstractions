@@ -8,7 +8,7 @@
 
 ## Build Status
 
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FNetLah%2Fabstractions%2Fbadge&style=flat)](https://actions-badge.atrox.dev/NetLah/abstractions/goto)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FNetLah%2Fabstractions%2Fbadge%3Fref%3Dmain&style=flat)](https://actions-badge.atrox.dev/NetLah/abstractions/goto?ref=main)
 
 ## Getting started
 
