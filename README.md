@@ -18,7 +18,7 @@ This solution come from the idea of [Gérald Barré on Meziantou's blog Getting 
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="NetLah.Abstractions" Version="0.1.1" PrivateAssets="build"/>
+  <PackageReference Include="NetLah.Abstractions" Version="0.1.1" PrivateAssets="build" />
 </ItemGroup>
 ```
 
@@ -72,8 +72,19 @@ Version:0.0.0-alpha.0.1 BuildTime:2021-05-09T12:26:56+08:00; Framework:.NETCoreA
 
 ### 4. Use `Directory.Build.targets` to declare build date attribute to all projects inside the solution
 
+- Set build date to projects that already include packageReference `NetLah.Abstractions`
+
 ```xml
 <ItemGroup>
+  <PackageReference Update="NetLah.Abstractions" Version="0.1.1" PrivateAssets="build" />
+</ItemGroup>
+```
+
+- Set build date to all projects
+
+```xml
+<ItemGroup>
+  <PackageReference Include="NetLah.Abstractions" />
   <PackageReference Update="NetLah.Abstractions" Version="0.1.1" PrivateAssets="build" />
 </ItemGroup>
 ```
