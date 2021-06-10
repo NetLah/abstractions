@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <PackageId>NetLah.Abstractions</PackageId>
@@ -9,10 +9,16 @@
     <RootNamespace>NetLah</RootNamespace>
     <AssemblyName>NetLah.Abstractions</AssemblyName>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\LICENSE" Pack="true" PackagePath=""/>
+    <Content Include="build\**\*" PackagePath="build" />
+    <None Include="..\LICENSE" Pack="true" PackagePath="\" />
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+    <None Remove="build\**\*" />
   </ItemGroup>
+  
+  <Import Project="build/NetLah.Abstractions.props" />
 
 </Project>

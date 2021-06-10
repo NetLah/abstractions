@@ -1,0 +1,17 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <AssemblyBuildDate>$([System.DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"))</AssemblyBuildDate>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="NetLah.Runtime.AssemblyBuildDateAttribute">
+      <_Parameter1>$(AssemblyBuildDate)</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <Target Name="TestMessage" BeforeTargets="Build">
+    <Message Importance="high" Text="[set] AssemblyBuildDate: $(AssemblyBuildDate)" />
+  </Target>
+
+</Project>
