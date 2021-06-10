@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <Target Name="TestMessage" BeforeTargets="Build">
-    <Message Importance="high" Text="[set] AssemblyBuildDate: $(AssemblyBuildDate)" />
+    <Message Importance="high" Text="AssemblyBuildDate := [set] $(AssemblyBuildDate)" />
   </Target>
 
 </Project>

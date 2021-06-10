@@ -31,7 +31,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   Determining projects to restore...
   All projects are up-to-date for restore.
   SampleApp -> C:\Work\NetLah\abstractions\samples\SampleApp\bin\Debug\net5.0\SampleApp.dll
-  [set] AssemblyBuildDate: 2021-06-10T05:28:33
+  AssemblyBuildDate := [set] 2021-06-10T05:28:33
 
 Build succeeded.
     0 Warning(s)

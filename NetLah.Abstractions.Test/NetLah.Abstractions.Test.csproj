@@ -16,4 +16,6 @@
     <ProjectReference Include="..\NetLah.Abstractions\NetLah.Abstractions.csproj" />
   </ItemGroup>
 
+  <Import Project="../NetLah.Abstractions/build/NetLah.Abstractions.props" />
+
 </Project>

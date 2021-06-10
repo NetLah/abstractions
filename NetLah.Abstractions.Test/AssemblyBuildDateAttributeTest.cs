@@ -13,7 +13,7 @@ namespace NetLah.Abstractions.Test
 
             var expected = new DateTimeOffset(2021, 5, 8, 5, 25, 59, TimeSpan.Zero);
             Assert.Equal(expected, attr.DateTime);
-            Assert.Equal(expected.Offset, attr.DateTime.Offset);
+            Assert.Equal(expected.Offset, attr.DateTime?.Offset);
         }
     }
 }

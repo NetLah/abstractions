@@ -14,7 +14,7 @@ namespace NetLah.Diagnostics
         private readonly Lazy<string> _description;
         private readonly Lazy<string> _imageRuntimeVersion;
         private readonly Lazy<string> _frameworkName;
-        private readonly Lazy<DateTimeOffset> _buildDate;
+        private readonly Lazy<DateTimeOffset?> _buildDate;
         private readonly Lazy<string> _buildTimestampLocal;
 
         public AssemblyInfo(Assembly assembly)
@@ -26,8 +26,8 @@ namespace NetLah.Diagnostics
             _description = new Lazy<string>(() => _assembly.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description);
             _imageRuntimeVersion = new Lazy<string>(() => _assembly.ImageRuntimeVersion);
             _frameworkName = new Lazy<string>(() => _assembly.GetCustomAttribute<TargetFrameworkAttribute>().FrameworkName);
-            _buildDate = new Lazy<DateTimeOffset>(() => _assembly.GetCustomAttribute<AssemblyBuildDateAttribute>()?.DateTime ?? DateTimeOffset.UtcNow);
-            _buildTimestampLocal = new Lazy<string>(() => GetTimestampString(BuildDate, TimeZoneInfo.Local));
+            _buildDate = new Lazy<DateTimeOffset?>(() => _assembly.GetCustomAttribute<AssemblyBuildDateAttribute>()?.DateTime);
+            _buildTimestampLocal = new Lazy<string>(() => GetTimestampString(BuildDate ?? DateTimeOffset.Now, TimeZoneInfo.Local));
         }
 
         private static string GetTimestampString(DateTimeOffset dateTimeOffset, TimeZoneInfo timeZoneInfo)
@@ -51,7 +51,7 @@ namespace NetLah.Diagnostics
 
         public string FrameworkName => _frameworkName.Value;
 
-        public DateTimeOffset BuildDate => _buildDate.Value;
+        public DateTimeOffset? BuildDate => _buildDate.Value;
 
         // format: "1970-01-01T23:59:59+08:00"
         public string BuildTimestampLocal => _buildTimestampLocal.Value;

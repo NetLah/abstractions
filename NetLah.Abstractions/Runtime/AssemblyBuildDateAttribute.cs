@@ -20,9 +20,10 @@ namespace NetLah.Runtime
     {
         public AssemblyBuildDateAttribute(string value)
             => DateTime = DateTimeOffset.TryParseExact(value, "yyyy-MM-ddTHH:mm:ss",
-                CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var result)
-                ? result : DateTimeOffset.UtcNow;
+                CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var result) ?
+                result :
+                null;
 
-        public DateTimeOffset DateTime { get; }
+        public DateTimeOffset? DateTime { get; }
     }
 }

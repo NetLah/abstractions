@@ -28,35 +28,35 @@ namespace NetLah.Diagnostics
         {
             lock (_staticSyncRoot)
             {
-                if (Instance != null)
+                if (Instance is { } instance)
                 {
-                    throw new InvalidOperationException($"ApplicationInfo already init with assembly: {Instance.Assembly.Name.FullName}");
+                    throw new InvalidOperationException($"ApplicationInfo is already initialized with assembly: {instance.AssemblyInfo.Name.FullName}");
                 }
                 Instance = new ApplicationInfo(assembly ?? System.Reflection.Assembly.GetEntryAssembly());
             }
             return Instance;
         }
 
-        private ApplicationInfo(Assembly assembly) => Assembly = new AssemblyInfo(assembly);
+        private ApplicationInfo(Assembly assembly) => AssemblyInfo = new AssemblyInfo(assembly);
 
-        public AssemblyInfo Assembly { get; }
+        public IAssemblyInfo AssemblyInfo { get; }
 
-        public string InformationalVersion => Assembly.InformationalVersion;
+        public string InformationalVersion => AssemblyInfo.InformationalVersion;
 
-        public string Product => Assembly.Product;
+        public string Product => AssemblyInfo.Product;
 
-        public string Title => Assembly.Title;
+        public string Title => AssemblyInfo.Title;
 
-        public string Description => Assembly.Description;
+        public string Description => AssemblyInfo.Description;
 
-        public AssemblyName Name => Assembly.Name;
+        public AssemblyName Name => AssemblyInfo.Name;
 
-        public string ImageRuntimeVersion => Assembly.ImageRuntimeVersion;
+        public string ImageRuntimeVersion => AssemblyInfo.ImageRuntimeVersion;
 
-        public string FrameworkName => Assembly.FrameworkName;
+        public string FrameworkName => AssemblyInfo.FrameworkName;
 
-        public DateTimeOffset BuildDate => Assembly.BuildDate;
+        public DateTimeOffset? BuildDate => AssemblyInfo.BuildDate;
 
-        public string BuildTimestampLocal => Assembly.BuildTimestampLocal;
+        public string BuildTimestampLocal => AssemblyInfo.BuildTimestampLocal;
     }
 }
