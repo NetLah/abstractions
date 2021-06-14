@@ -1,16 +1,16 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(DesignTimeBuild)' != 'true'">
     <AssemblyBuildDate>$([System.DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"))</AssemblyBuildDate>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(DesignTimeBuild)' != 'true'">
     <AssemblyAttribute Include="NetLah.Runtime.AssemblyBuildDateAttribute">
       <_Parameter1>$(AssemblyBuildDate)</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
 
-  <Target Name="TestMessage" BeforeTargets="Build">
+  <Target Name="AssemblyBuildDateMessage" BeforeTargets="Build" Condition="'$(DesignTimeBuild)' != 'true'">
     <Message Importance="high" Text="AssemblyBuildDate := [set] $(AssemblyBuildDate)" />
   </Target>
 
