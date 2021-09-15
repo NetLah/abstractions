@@ -3,7 +3,7 @@
   <PropertyGroup>
     <PackageId>NetLah.Abstractions</PackageId>
     <PackageTags>application-info;assembly-info;assembly-build-datetime;build-datetime;assembly;build;netcore;dotnet;aspnetcore;diagnostics</PackageTags>
-    <TargetFrameworks>net6.0;net5.0;netcoreapp3.1;netstandard2.1;netstandard2.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Description>.NET common class such as ApplicationInfo, AssemblyInfo, AssemblyBuildDateAttribute</Description>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../NetLah.snk</AssemblyOriginatorKeyFile>
