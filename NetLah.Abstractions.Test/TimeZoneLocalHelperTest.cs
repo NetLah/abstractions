@@ -12,7 +12,7 @@ namespace NetLah.Abstractions.Test
             var tz = TimeZoneLocalHelper.GetSingaporeOrCustomTimeZone();
 
             Assert.Equal(TimeSpan.FromHours(8), tz.BaseUtcOffset);
-            Assert.Contains("Singapore", tz.DisplayName);
+            Assert.Contains("+08:00", tz.DisplayName);
         }
     }
 }
