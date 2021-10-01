@@ -10,8 +10,8 @@
     </AssemblyAttribute>
   </ItemGroup>
 
-  <Target Name="AssemblyBuildDateMessage" BeforeTargets="Build" Condition="'$(DesignTimeBuild)' != 'true'">
-    <Message Importance="high" Text="AssemblyBuildDate := [set] $(AssemblyBuildDate)" />
+  <Target Name="AssemblyBuildDateMessage" BeforeTargets="Build" Condition="'$(DesignTimeBuild)' != 'true' And '$(TargetFramework)' != ''">
+    <Message Importance="high" Text="$(MSBuildProjectName) := [set] $(AssemblyBuildDate) ($(TargetFramework))" />
   </Target>
 
 </Project>
