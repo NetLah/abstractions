@@ -14,11 +14,11 @@
 
 This solution come from the idea of [Gérald Barré on Meziantou's blog Getting the date of build of a .NET assembly at runtime](https://www.meziantou.net/getting-the-date-of-build-of-a-dotnet-assembly-at-runtime.htm)
 
-### 1. Add/Update PackageReference with PrivateAssets=build in .csproj
+### 1. Add/Update PackageReference to .csproj
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="NetLah.Abstractions" Version="0.1.1" PrivateAssets="build" />
+  <PackageReference Include="NetLah.Abstractions" Version="0.1.1" />
 </ItemGroup>
 ```
 
@@ -31,7 +31,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   Determining projects to restore...
   All projects are up-to-date for restore.
   SampleApp -> C:\Work\NetLah\abstractions\samples\SampleApp\bin\Debug\net5.0\SampleApp.dll
-  AssemblyBuildDate := [set] 2021-06-10T05:28:33
+  SampleApp := [set] 2021-06-10T05:28:33 (net5.0)
 
 Build succeeded.
     0 Warning(s)
@@ -76,7 +76,7 @@ Version:0.0.0-alpha.0.1 BuildTime:2021-05-09T12:26:56+08:00; Framework:.NETCoreA
 
 ```xml
 <ItemGroup>
-  <PackageReference Update="NetLah.Abstractions" Version="0.1.1" PrivateAssets="build" />
+  <PackageReference Update="NetLah.Abstractions" Version="0.1.1" />
 </ItemGroup>
 ```
 
@@ -85,6 +85,6 @@ Version:0.0.0-alpha.0.1 BuildTime:2021-05-09T12:26:56+08:00; Framework:.NETCoreA
 ```xml
 <ItemGroup>
   <PackageReference Include="NetLah.Abstractions" />
-  <PackageReference Update="NetLah.Abstractions" Version="0.1.1" PrivateAssets="build" />
+  <PackageReference Update="NetLah.Abstractions" Version="0.1.1" />
 </ItemGroup>
 ```
