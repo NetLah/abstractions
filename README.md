@@ -40,7 +40,7 @@ Build succeeded.
 Time Elapsed 00:00:01.84
 ```
 
-### 2. Retrieve build datetime of assemly
+### 2. Retrieve build datetime of assembly
 
 ```csharp
 var asm = new AssemblyInfo(typeof(AssemblyInfo).Assembly);
@@ -55,7 +55,7 @@ AssemblyTitle:NetLah.Abstractions
 Version:0.0.0-alpha.0.1 BuildTime:2021-05-09T12:26:28+08:00; Framework:.NETStandard,Version=v2.1
 ```
 
-### 3. Or Retrieve build datetime of entry assemly
+### 3. Or Retrieve build datetime of entry assembly
 
 ```csharp
 var appInfo = ApplicationInfo.Initialize(null);
