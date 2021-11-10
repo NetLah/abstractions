@@ -18,20 +18,20 @@ This solution come from the idea of [Gérald Barré on Meziantou's blog Getting 
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="NetLah.Abstractions" Version="0.1.1" />
+  <PackageReference Include="NetLah.Abstractions" Version="0.2.0" />
 </ItemGroup>
 ```
 
 ### 2. Output during build
 
 ```txt
-Microsoft (R) Build Engine version 17.0.0-preview-21501-01+bbcce1dff for .NET
+Microsoft (R) Build Engine version 17.0.0+c9eb9dd64 for .NET
 Copyright (C) Microsoft Corporation. All rights reserved.
 
   Determining projects to restore...
   All projects are up-to-date for restore.
   SampleApp -> C:\Work\NetLah\abstractions\samples\SampleApp\bin\Debug\net6.0\SampleApp.dll
-  SampleApp := [set] 2021-10-14T04:26:28 (net6.0)
+  SampleApp := [set] 2021-11-08T21:26:28 (net6.0)
 
 Build succeeded.
     0 Warning(s)
@@ -52,7 +52,7 @@ The output:
 
 ```text
 AssemblyTitle:NetLah.Abstractions
-Version:0.0.0-alpha.0.1 BuildTime:2021-10-14T12:26:28+08:00; Framework:.NETStandard,Version=v2.0
+Version:0.2.0-rc2.2 BuildTime:2021-11-08T21:26:28+08:00; Framework:.NETStandard,Version=v2.0
 ```
 
 ### 3. Or Retrieve build datetime of entry assembly
@@ -67,7 +67,7 @@ Output:
 
 ```text
 AppTitle:SampleApp
-Version:0.0.0-alpha.0.1 BuildTime:2021-10-14T12:26:56+08:00; Framework:.NETCoreApp,Version=v6.0
+Version:0.2.0-rc2.2 BuildTime:2021-11-08T21:26:56+08:00; Framework:.NETCoreApp,Version=v6.0
 ```
 
 ### 4. Use `Directory.Build.targets` to declare build date attribute to all projects inside the solution
@@ -76,7 +76,7 @@ Version:0.0.0-alpha.0.1 BuildTime:2021-10-14T12:26:56+08:00; Framework:.NETCoreA
 
 ```xml
 <ItemGroup>
-  <PackageReference Update="NetLah.Abstractions" Version="0.1.1" />
+  <PackageReference Update="NetLah.Abstractions" Version="0.2.0" />
 </ItemGroup>
 ```
 
@@ -85,6 +85,6 @@ Version:0.0.0-alpha.0.1 BuildTime:2021-10-14T12:26:56+08:00; Framework:.NETCoreA
 ```xml
 <ItemGroup>
   <PackageReference Include="NetLah.Abstractions" />
-  <PackageReference Update="NetLah.Abstractions" Version="0.1.1" />
+  <PackageReference Update="NetLah.Abstractions" Version="0.2.0" />
 </ItemGroup>
 ```
