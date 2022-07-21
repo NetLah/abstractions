@@ -8,6 +8,7 @@
     <Product>NetLah .NET</Product>
 
     <!--PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance-->
+    <!--PackageLicenseFile>LICENSE</PackageLicenseFile-->
 
     <!--PackageIcon>icon.png</PackageIcon-->
     <PackageProjectUrl>https://github.com/NetLah/abstractions</PackageProjectUrl>
@@ -20,6 +21,8 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
 
     <LangVersion>10.0</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TEAMCITY_VERSION)' != '' OR '$(CI)' == 'true' OR '$(TF_BUILD)' == 'true' OR '$(GITHUB_ACTIONS)' == 'true'">
