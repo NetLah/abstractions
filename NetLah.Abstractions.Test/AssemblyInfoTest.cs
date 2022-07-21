@@ -1,38 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using NetLah.Diagnostics;
 using System.Reflection;
-using NetLah.Diagnostics;
 using Xunit;
 
-namespace NetLah.Abstractions.Test
+namespace NetLah.Abstractions.Test;
+
+public class AssemblyInfoTest
 {
-    public class AssemblyInfoTest
+    public static IEnumerable<object[]> AssemblyData =>
+        new List<object[]>
+        {
+            new object[] { typeof(AssemblyInfo).Assembly},
+            new object[] { typeof(AssemblyBuildDateAttributeTest).Assembly },
+        };
+
+    [Theory]
+    [MemberData(nameof(AssemblyData))]
+    public void AssemblyBuidDate_Exist(Assembly assembly)
     {
-        public static IEnumerable<object[]> AssemblyData =>
-            new List<object[]>
-            {
-                new object[] { typeof(AssemblyInfo).Assembly},
-                new object[] { typeof(AssemblyBuildDateAttributeTest).Assembly },
-            };
+        var assemblyInfo = new AssemblyInfo(assembly);
 
-        [Theory]
-        [MemberData(nameof(AssemblyData))]
-        public void AssemblyBuidDate_Exist(Assembly assembly)
-        {
-            var assemblyInfo = new AssemblyInfo(assembly);
+        var buildDate = assemblyInfo.BuildDate;
 
-            var buildDate = assemblyInfo.BuildDate;
+        Assert.NotNull(buildDate);
+    }
 
-            Assert.NotNull(buildDate);
-        }
+    [Fact]
+    public void ApplicationBuidDate_Exist()
+    {
+        var applicationInfo = ApplicationInfo.Initialize(typeof(AssemblyBuildDateAttributeTest).Assembly);
 
-        [Fact]
-        public void ApplicationBuidDate_Exist()
-        {
-            var applicationInfo = ApplicationInfo.Initialize(typeof(AssemblyBuildDateAttributeTest).Assembly);
+        var buildDate = applicationInfo.BuildDate;
 
-            var buildDate = applicationInfo.BuildDate;
-
-            Assert.NotNull(buildDate);
-        }
+        Assert.NotNull(buildDate);
     }
 }

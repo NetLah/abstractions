@@ -15,23 +15,24 @@ namespace NetLah.Diagnostics;
 public sealed class ApplicationInfo : IAssemblyInfo
 {
     private static readonly object _staticSyncRoot = new();
+    private static ApplicationInfo? _instance;
 
-    public static ApplicationInfo? Instance { get; private set; }
+    public static IAssemblyInfo Instance => _instance ?? EmptyApplicationInfo.Default;
 
     /// <summary>
     /// Initialize single instance of ApplicationInfo
     /// </summary>
     /// <param name="assembly">Provide null for Assembly.GetEntryAssembly()</param>
     /// <returns></returns>
-    public static ApplicationInfo Initialize(Assembly? assembly)
+    public static IAssemblyInfo Initialize(Assembly? assembly)
     {
         lock (_staticSyncRoot)
         {
-            if (Instance is { } instance)
+            if (_instance is { } instance)
             {
                 throw new InvalidOperationException($"ApplicationInfo is already initialized with assembly: {instance.AssemblyInfo.Name.FullName}");
             }
-            Instance = new ApplicationInfo(assembly ?? Assembly.GetEntryAssembly());
+            _instance = new ApplicationInfo(assembly ?? Assembly.GetEntryAssembly());
         }
         return Instance;
     }
