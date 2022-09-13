@@ -10,7 +10,7 @@ public class AssemblyInfoTest
         new List<object[]>
         {
             new object[] { typeof(AssemblyInfo).Assembly},
-            new object[] { typeof(AssemblyBuildDateAttributeTest).Assembly },
+            new object[] { typeof(AssemblyBuildTimeAttributeTest).Assembly },
         };
 
     [Theory]
@@ -27,7 +27,11 @@ public class AssemblyInfoTest
     [Fact]
     public void ApplicationBuildTime_Exist()
     {
-        var applicationInfo = ApplicationInfo.Initialize(typeof(AssemblyBuildDateAttributeTest).Assembly);
+        ApplicationInfoReference.Instance = null;
+
+        var applicationInfo = ApplicationInfo.Initialize(typeof(AssemblyBuildTimeAttributeTest).Assembly);
+
+        Assert.NotNull(ApplicationInfoReference.Instance);
 
         var buildDate = applicationInfo.BuildTime;
 
@@ -50,10 +54,28 @@ public class AssemblyInfoTest
     [Obsolete("Use BuildTime property")]
     public void ApplicationBuildDate_Exist()
     {
+        ApplicationInfoReference.Instance = null;
+
         var applicationInfo = ApplicationInfo.Initialize(typeof(AssemblyBuildDateAttributeTest).Assembly);
+
+        Assert.NotNull(ApplicationInfoReference.Instance);
 
         var buildDate = applicationInfo.BuildDate;
 
         Assert.NotNull(buildDate);
+    }
+
+
+    [Fact]
+    public void ApplicationBuildTime_Exception()
+    {
+        if (ApplicationInfoReference.Instance == null)
+        {
+            ApplicationInfo.Initialize(typeof(AssemblyBuildTimeAttributeTest).Assembly);
+        }
+
+        var ex = Assert.Throws<InvalidOperationException>(() => ApplicationInfo.Initialize(typeof(AssemblyBuildTimeAttributeTest).Assembly));
+
+        Assert.StartsWith("ApplicationInfo is already initialized with assembly: ", ex.Message);
     }
 }
