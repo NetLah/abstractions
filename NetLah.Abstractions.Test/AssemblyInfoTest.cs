@@ -19,9 +19,9 @@ public class AssemblyInfoTest
     {
         var assemblyInfo = new AssemblyInfo(assembly);
 
-        var buildDate = assemblyInfo.BuildTime;
+        var buildTime = assemblyInfo.BuildTime;
 
-        Assert.NotNull(buildDate);
+        Assert.NotNull(buildTime);
     }
 
     [Fact]
@@ -33,9 +33,9 @@ public class AssemblyInfoTest
 
         Assert.NotNull(ApplicationInfoReference.Instance);
 
-        var buildDate = applicationInfo.BuildTime;
+        var buildTime = applicationInfo.BuildTime;
 
-        Assert.NotNull(buildDate);
+        Assert.NotNull(buildTime);
     }
 
     [Theory]
