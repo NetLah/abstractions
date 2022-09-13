@@ -15,7 +15,29 @@ public class AssemblyInfoTest
 
     [Theory]
     [MemberData(nameof(AssemblyData))]
-    public void AssemblyBuidDate_Exist(Assembly assembly)
+    public void AssemblyBuildTime_Exist(Assembly assembly)
+    {
+        var assemblyInfo = new AssemblyInfo(assembly);
+
+        var buildDate = assemblyInfo.BuildTime;
+
+        Assert.NotNull(buildDate);
+    }
+
+    [Fact]
+    public void ApplicationBuildTime_Exist()
+    {
+        var applicationInfo = ApplicationInfo.Initialize(typeof(AssemblyBuildDateAttributeTest).Assembly);
+
+        var buildDate = applicationInfo.BuildTime;
+
+        Assert.NotNull(buildDate);
+    }
+
+    [Theory]
+    [MemberData(nameof(AssemblyData))]
+    [Obsolete("Use BuildTime property")]
+    public void AssemblyBuildDate_Exist(Assembly assembly)
     {
         var assemblyInfo = new AssemblyInfo(assembly);
 
@@ -25,7 +47,8 @@ public class AssemblyInfoTest
     }
 
     [Fact]
-    public void ApplicationBuidDate_Exist()
+    [Obsolete("Use BuildTime property")]
+    public void ApplicationBuildDate_Exist()
     {
         var applicationInfo = ApplicationInfo.Initialize(typeof(AssemblyBuildDateAttributeTest).Assembly);
 

@@ -20,6 +20,8 @@ internal sealed class EmptyApplicationInfo : IAssemblyInfo
 
     public string FrameworkName => "FrameworkName";
 
+    public DateTimeOffset? BuildTime => DateTimeOffset.Now;
+
     public DateTimeOffset? BuildDate => DateTimeOffset.Now;
 
     public string BuildTimestampLocal => "BuildTimestampLocal";

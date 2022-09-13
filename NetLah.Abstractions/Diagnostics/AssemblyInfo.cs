@@ -13,7 +13,7 @@ public class AssemblyInfo : IAssemblyInfo
     private readonly Lazy<string> _description;
     private readonly Lazy<string> _imageRuntimeVersion;
     private readonly Lazy<string> _frameworkName;
-    private readonly Lazy<DateTimeOffset?> _buildDate;
+    private readonly Lazy<DateTimeOffset?> _buildTime;
     private readonly Lazy<string> _buildTimestampLocal;
 
     public AssemblyInfo(Assembly assembly)
@@ -25,8 +25,12 @@ public class AssemblyInfo : IAssemblyInfo
         _description = new Lazy<string>(() => _assembly.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description ?? "_description");
         _imageRuntimeVersion = new Lazy<string>(() => _assembly.ImageRuntimeVersion ?? "_imageRuntimeVersion");
         _frameworkName = new Lazy<string>(() => _assembly.GetCustomAttribute<TargetFrameworkAttribute>().FrameworkName ?? "_frameworkName");
-        _buildDate = new Lazy<DateTimeOffset?>(() => _assembly.GetCustomAttribute<AssemblyBuildDateAttribute>()?.DateTime);
-        _buildTimestampLocal = new Lazy<string>(() => GetTimestampString(BuildDate ?? DateTimeOffset.Now, TimeZoneInfo.Local));
+        _buildTime = new Lazy<DateTimeOffset?>(
+            () => _assembly.GetCustomAttribute<AssemblyBuildTimeAttribute>()?.DateTime ??
+#pragma warning disable CS0618 // Type or member is obsolete
+                _assembly.GetCustomAttribute<AssemblyBuildDateAttribute>()?.DateTime);
+#pragma warning restore CS0618 // Type or member is obsolete
+        _buildTimestampLocal = new Lazy<string>(() => GetTimestampString(BuildTime ?? DateTimeOffset.Now, TimeZoneInfo.Local));
     }
 
     private static string GetTimestampString(DateTimeOffset dateTimeOffset, TimeZoneInfo timeZoneInfo)
@@ -50,7 +54,10 @@ public class AssemblyInfo : IAssemblyInfo
 
     public string FrameworkName => _frameworkName.Value;
 
-    public DateTimeOffset? BuildDate => _buildDate.Value;
+    public DateTimeOffset? BuildTime => _buildTime.Value;
+
+    [Obsolete("Use BuildTime property")]
+    public DateTimeOffset? BuildDate => _buildTime.Value;
 
     // format: "1970-01-01T23:59:59+08:00"
     public string BuildTimestampLocal => _buildTimestampLocal.Value;

@@ -1,8 +1,4 @@
-﻿using System.Globalization;
-
-namespace NetLah.Runtime;
-
-// https://www.meziantou.net/2018/09/24/getting-the-date-of-build-of-a-net-assembly-at-runtime
+﻿namespace NetLah.Runtime;
 
 /// <summary>
 /// Store assembly build date time
@@ -14,14 +10,11 @@ namespace NetLah.Runtime;
 ///   </ItemGroup>
 /// </code>
 /// </summary>
+[Obsolete("Use AssemblyBuildTimeAttribute")]
 [AttributeUsage(AttributeTargets.Assembly)]
 public sealed class AssemblyBuildDateAttribute : Attribute
 {
-    public AssemblyBuildDateAttribute(string value)
-        => DateTime = DateTimeOffset.TryParseExact(value, "yyyy-MM-ddTHH:mm:ss",
-            CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var result) ?
-            result :
-            null;
+    public AssemblyBuildDateAttribute(string value) => DateTime = BuildTimeHelper.ParseBuildTime(value);
 
     public DateTimeOffset? DateTime { get; }
 }
