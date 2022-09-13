@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>NetLah.Sample.AppNugetReference</PackageId>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net6.0;netcoreapp3.1</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NetLah.Abstractions" />
+    <PackageReference Include="NetLah.AssemblyInfo.Build.Targets" />
+  </ItemGroup>
+
+</Project>

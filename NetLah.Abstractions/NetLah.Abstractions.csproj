@@ -4,7 +4,7 @@
     <PackageId>NetLah.Abstractions</PackageId>
     <PackageTags>application-info;assembly-info;assembly-build-datetime;build-datetime;assembly;build;netcore;dotnet;aspnetcore;diagnostics</PackageTags>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>.NET common class such as ApplicationInfo, AssemblyInfo</Description>
+    <Description>Classes for retrieving .NET assembly build time ApplicationInfo, AssemblyInfo</Description>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../NetLah.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>NetLah</RootNamespace>
@@ -14,14 +14,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="build\**\*" PackagePath="build" />
-    <Content Include="buildMultiTargeting\**\*" PackagePath="buildMultiTargeting" />
     <None Include="..\LICENSE" Pack="true" PackagePath="\" />
-    <None Include="..\README.md" Pack="true" PackagePath="\" />
-    <None Remove="build\**\*" />
-    <None Remove="buildMultiTargeting\**\*" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
-  <Import Project="build/NetLah.Abstractions.props" />
+  <Import Project="../NetLah.AssemblyInfo.Build.Targets/build/NetLah.AssemblyInfo.Build.Targets.props" />
 
 </Project>

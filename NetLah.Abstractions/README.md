@@ -1,22 +1,16 @@
 # NetLah.Abstractions - .NET Library
 
-[NetLah.Abstractions](https://www.nuget.org/packages/NetLah.Abstractions/) is .NET library of reusable classes for retrieving .NET assembly build time `ApplicationInfo`, `AssemblyInfo`.
-
-[NetLah.AssemblyInfo.Build.Targets](https://www.nuget.org/packages/NetLah.AssemblyInfo.Build.Targets/) is MSBuild targets for assembly build-time generation.
+.NET library of reusable classes for retrieving .NET assembly build time `ApplicationInfo`, `AssemblyInfo`.
 
 ## Nuget package
 
 [![NuGet](https://img.shields.io/nuget/v/NetLah.Abstractions.svg?style=flat-square&label=nuget&colorB=00b200)](https://www.nuget.org/packages/NetLah.Abstractions/)
-
-[![NuGet](https://img.shields.io/nuget/v/NetLah.AssemblyInfo.Build.Targets.svg?style=flat-square&label=nuget&colorB=00b200)](https://www.nuget.org/packages/NetLah.AssemblyInfo.Build.Targets/)
 
 ## Build Status
 
 [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FNetLah%2Fabstractions%2Fbadge%3Fref%3Dmain&style=flat)](https://actions-badge.atrox.dev/NetLah/abstractions/goto?ref=main)
 
 ## Getting started
-
-This solution come from the idea of [Gérald Barré on Meziantou's blog Getting the date of build of a .NET assembly at runtime](https://www.meziantou.net/getting-the-date-of-build-of-a-dotnet-assembly-at-runtime.htm)
 
 ### 1. Add/Update PackageReference to .csproj
 
