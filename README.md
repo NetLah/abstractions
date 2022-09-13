@@ -1,6 +1,6 @@
 # NetLah.Abstractions - .NET Library
 
-[NetLah.Abstractions](https://www.nuget.org/packages/NetLah.Abstractions/) is a library which contains a set of reusable classes for storage and retrieve .NET assembly build date time at runtime. These libray classes are `ApplicationInfo`, `AssemblyInfo`, `AssemblyBuildTimeAttribute`.
+[NetLah.Abstractions](https://www.nuget.org/packages/NetLah.Abstractions/) is a library which contains a set of reusable classes for storage and retrieve .NET assembly build date time at runtime. These libray classes are `ApplicationInfo`, `AssemblyInfo`.
 
 ## Nuget package
 

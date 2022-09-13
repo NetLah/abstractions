@@ -10,7 +10,7 @@
 ///   </ItemGroup>
 /// </code>
 /// </summary>
-[Obsolete("Use AssemblyBuildTimeAttribute")]
+[Obsolete("Use AssemblyMetadataAttribute")]
 [AttributeUsage(AttributeTargets.Assembly)]
 public sealed class AssemblyBuildDateAttribute : Attribute
 {

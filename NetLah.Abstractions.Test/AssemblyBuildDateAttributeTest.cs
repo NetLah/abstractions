@@ -6,7 +6,7 @@ namespace NetLah.Abstractions.Test;
 public class AssemblyBuildDateAttributeTest
 {
     [Fact]
-    [Obsolete("Use AssemblyBuildTimeAttribute")]
+    [Obsolete("Use AssemblyMetadataAttribute")]
     public void ParseDateTimeUtcToDateTimeOffsetSuccess()
     {
         var attr = new AssemblyBuildDateAttribute("2021-05-08T05:25:59");

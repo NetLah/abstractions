@@ -26,7 +26,7 @@ public class AssemblyInfo : IAssemblyInfo
         _imageRuntimeVersion = new Lazy<string>(() => _assembly.ImageRuntimeVersion ?? "_imageRuntimeVersion");
         _frameworkName = new Lazy<string>(() => _assembly.GetCustomAttribute<TargetFrameworkAttribute>().FrameworkName ?? "_frameworkName");
         _buildTime = new Lazy<DateTimeOffset?>(
-            () => _assembly.GetCustomAttribute<AssemblyBuildTimeAttribute>()?.DateTime ??
+            () => BuildTimeHelper.ParseBuildTime(_assembly.GetCustomAttributes<AssemblyMetadataAttribute>()) ??
 #pragma warning disable CS0618 // Type or member is obsolete
                 _assembly.GetCustomAttribute<AssemblyBuildDateAttribute>()?.DateTime);
 #pragma warning restore CS0618 // Type or member is obsolete
