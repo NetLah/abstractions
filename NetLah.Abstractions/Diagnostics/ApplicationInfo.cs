@@ -19,6 +19,8 @@ public sealed class ApplicationInfo : IAssemblyInfo
 
     public static IAssemblyInfo Instance => _instance ?? EmptyApplicationInfo.Default;
 
+    public static IAssemblyInfo SafeInstance => TryInitialize(null);
+
     /// <summary>
     /// Initialize single instance of ApplicationInfo
     /// </summary>
@@ -32,7 +34,16 @@ public sealed class ApplicationInfo : IAssemblyInfo
             {
                 throw new InvalidOperationException($"ApplicationInfo is already initialized with assembly: {instance.AssemblyInfo.Name.FullName}");
             }
-            _instance = new ApplicationInfo(assembly ?? Assembly.GetEntryAssembly());
+
+            return TryInitialize(assembly);
+        }
+    }
+
+    public static IAssemblyInfo TryInitialize(Assembly? assembly)
+    {
+        lock (_staticSyncRoot)
+        {
+            _instance ??= new ApplicationInfo(assembly ?? Assembly.GetEntryAssembly());
         }
         return Instance;
     }

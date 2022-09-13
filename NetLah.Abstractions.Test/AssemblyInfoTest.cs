@@ -27,13 +27,16 @@ public class AssemblyInfoTest
     [Fact]
     public void ApplicationBuildTime_Exist()
     {
-        ApplicationInfoReference.Instance = null;
+        ApplicationInfoReference.Reset();
 
-        var applicationInfo = ApplicationInfo.Initialize(typeof(BuildTimeHelperTest).Assembly);
+        var assemblyInfo = ApplicationInfo.Initialize(typeof(BuildTimeHelperTest).Assembly);
 
         Assert.NotNull(ApplicationInfoReference.Instance);
 
-        var buildTime = applicationInfo.BuildTime;
+        Assert.NotNull(assemblyInfo);
+        Assert.NotSame(EmptyApplicationInfo.Default, assemblyInfo);
+
+        var buildTime = assemblyInfo.BuildTime;
 
         Assert.NotNull(buildTime);
     }
@@ -54,13 +57,16 @@ public class AssemblyInfoTest
     [Obsolete("Use BuildTime property")]
     public void ApplicationBuildDate_Exist()
     {
-        ApplicationInfoReference.Instance = null;
+        ApplicationInfoReference.Reset();
 
-        var applicationInfo = ApplicationInfo.Initialize(typeof(AssemblyBuildDateAttributeTest).Assembly);
+        var assemblyInfo = ApplicationInfo.Initialize(typeof(AssemblyBuildDateAttributeTest).Assembly);
 
         Assert.NotNull(ApplicationInfoReference.Instance);
 
-        var buildDate = applicationInfo.BuildDate;
+        Assert.NotNull(assemblyInfo);
+        Assert.NotSame(EmptyApplicationInfo.Default, assemblyInfo);
+
+        var buildDate = assemblyInfo.BuildDate;
 
         Assert.NotNull(buildDate);
     }
@@ -68,13 +74,58 @@ public class AssemblyInfoTest
     [Fact]
     public void InitializeApplicationInfo_Exception()
     {
-        if (ApplicationInfoReference.Instance == null)
-        {
-            ApplicationInfo.Initialize(typeof(BuildTimeHelperTest).Assembly);
-        }
+        ApplicationInfoReference.SetAny();
 
         var ex = Assert.Throws<InvalidOperationException>(() => ApplicationInfo.Initialize(typeof(BuildTimeHelperTest).Assembly));
 
         Assert.StartsWith("ApplicationInfo is already initialized with assembly: ", ex.Message);
+    }
+
+    [Fact]
+    public void TryInitializeApplicationInfoNull()
+    {
+        ApplicationInfoReference.Reset();
+
+        var assemblyInfo = ApplicationInfo.TryInitialize(typeof(BuildTimeHelperTest).Assembly);
+
+        Assert.NotNull(assemblyInfo);
+        Assert.NotSame(EmptyApplicationInfo.Default, assemblyInfo);
+    }
+
+    [Fact]
+    public void TryInitializeApplicationInfoNotNull()
+    {
+        ApplicationInfoReference.SetAny();
+
+        var assemblyInfo = ApplicationInfo.TryInitialize(typeof(BuildTimeHelperTest).Assembly);
+
+        Assert.NotNull(assemblyInfo);
+        Assert.NotSame(EmptyApplicationInfo.Default, assemblyInfo);
+    }
+
+    [Fact]
+    public void ApplicationInfoDefaultInstance()
+    {
+        ApplicationInfoReference.Reset();
+
+        var assemblyInfo = ApplicationInfo.Instance;
+        var assemblyInfo1 = ApplicationInfo.Instance;
+
+        Assert.NotNull(assemblyInfo);
+        Assert.Same(assemblyInfo, assemblyInfo1);
+        Assert.Same(EmptyApplicationInfo.Default, assemblyInfo);
+    }
+
+    [Fact]
+    public void ApplicationInfoSafeInstance()
+    {
+        ApplicationInfoReference.Reset();
+
+        var assemblyInfo = ApplicationInfo.SafeInstance;
+        var assemblyInfo1 = ApplicationInfo.SafeInstance;
+
+        Assert.NotNull(assemblyInfo);
+        Assert.Same(assemblyInfo, assemblyInfo1);
+        Assert.NotSame(EmptyApplicationInfo.Default, assemblyInfo);
     }
 }
