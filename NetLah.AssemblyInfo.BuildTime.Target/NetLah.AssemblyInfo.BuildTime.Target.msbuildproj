@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="buildTransitive\**\*" PackagePath="build" />
+    <Content Include="buildTransitive\**\*" PackagePath="buildTransitive" />
     <None Include="..\LICENSE" Pack="true" PackagePath="\" />
     <None Include="README.md" Pack="true" PackagePath="\" />
     <None Remove="buildTransitive\**\*" />

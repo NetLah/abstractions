@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="NetLah.Abstractions" />
-    <PackageReference Include="NetLah.AssemblyInfo.Build.Targets" />
+    <PackageReference Include="NetLah.AssemblyInfo.BuildTime.Target" />
   </ItemGroup>
 
 </Project>
