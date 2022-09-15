@@ -36,7 +36,7 @@ public class AssemblyInfo : IAssemblyInfo
     private static string GetTimestampString(DateTimeOffset dateTimeOffset, TimeZoneInfo timeZoneInfo)
     {
         var local = TimeZoneInfo.ConvertTime(dateTimeOffset, timeZoneInfo);
-        var localString = local.ToString("yyyy-MM-ddTHH:mm:sszzz", System.Globalization.CultureInfo.InvariantCulture);
+        var localString = local.ToString("yyyy-MM-ddTHH:mm:ss.fffzzz", System.Globalization.CultureInfo.InvariantCulture);
         return localString;
     }
 
@@ -59,6 +59,6 @@ public class AssemblyInfo : IAssemblyInfo
     [Obsolete("Use BuildTime property")]
     public DateTimeOffset? BuildDate => _buildTime.Value;
 
-    // format: "1970-01-01T23:59:59+08:00"
+    // format: "1970-01-01T23:59:59.123+08:00"
     public string BuildTimestampLocal => _buildTimestampLocal.Value;
 }

@@ -2,13 +2,13 @@
 
 [NetLah.Abstractions](https://www.nuget.org/packages/NetLah.Abstractions/) is .NET library of reusable classes for retrieving .NET assembly build time `ApplicationInfo`, `AssemblyInfo`.
 
-[NetLah.AssemblyInfo.Build.Targets](https://www.nuget.org/packages/NetLah.AssemblyInfo.Build.Targets/) is MSBuild targets for assembly build-time generation.
+[NetLah.AssemblyInfo.BuildTime.Target](https://www.nuget.org/packages/NetLah.AssemblyInfo.BuildTime.Target/) is MSBuild target for assembly build-time generation.
 
 ## Nuget package
 
 [![NuGet](https://img.shields.io/nuget/v/NetLah.Abstractions.svg?style=flat-square&label=nuget&colorB=00b200)](https://www.nuget.org/packages/NetLah.Abstractions/)
 
-[![NuGet](https://img.shields.io/nuget/v/NetLah.AssemblyInfo.Build.Targets.svg?style=flat-square&label=nuget&colorB=00b200)](https://www.nuget.org/packages/NetLah.AssemblyInfo.Build.Targets/)
+[![NuGet](https://img.shields.io/nuget/v/NetLah.AssemblyInfo.BuildTime.Target.svg?style=flat-square&label=nuget&colorB=00b200)](https://www.nuget.org/packages/NetLah.AssemblyInfo.BuildTime.Target/)
 
 ## Build Status
 
@@ -23,7 +23,7 @@ This solution come from the idea of [Gérald Barré on Meziantou's blog Getting 
 ```xml
 <ItemGroup>
   <PackageReference Include="NetLah.Abstractions" Version="0.2.0" />
-  <PackageReference Include="NetLah.AssemblyInfo.Build.Targets" Version="0.2.0" PrivateAssets="All" />
+  <PackageReference Include="NetLah.AssemblyInfo.BuildTime.Target" Version="0.2.0" PrivateAssets="All" />
 </ItemGroup>
 ```
 
@@ -77,12 +77,12 @@ Version:0.2.0-rc2.2 BuildTime:2021-11-08T21:26:56+08:00; Framework:.NETCoreApp,V
 
 ### 4. Use `Directory.Build.targets` to declare build date time attribute to all projects inside the solution
 
-- Set build date time to projects that already include packageReference `NetLah.AssemblyInfo.Build.Targets`
+- Set build date time to projects that already include packageReference `NetLah.AssemblyInfo.BuildTime.Target`
 
 ```xml
 <ItemGroup>
   <PackageReference Update="NetLah.Abstractions" Version="0.2.0" />
-  <PackageReference Update="NetLah.AssemblyInfo.Build.Targets" Version="0.2.0" PrivateAssets="All" />
+  <PackageReference Update="NetLah.AssemblyInfo.BuildTime.Target" Version="0.2.0" PrivateAssets="All" />
 </ItemGroup>
 ```
 
@@ -91,6 +91,6 @@ Version:0.2.0-rc2.2 BuildTime:2021-11-08T21:26:56+08:00; Framework:.NETCoreApp,V
 ```xml
 <ItemGroup>
   <PackageReference Update="NetLah.Abstractions" Version="0.2.0" />
-  <PackageReference Include="NetLah.AssemblyInfo.Build.Targets" Version="0.2.0" PrivateAssets="All" />
+  <PackageReference Include="NetLah.AssemblyInfo.BuildTime.Target" Version="0.2.0" PrivateAssets="All" />
 </ItemGroup>
 ```

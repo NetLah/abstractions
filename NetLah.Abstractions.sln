@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetLah.Abstractions", "NetL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetLah.Abstractions.Test", "NetLah.Abstractions.Test\NetLah.Abstractions.Test.csproj", "{42CF9AB1-3CB2-4D84-9CED-EBC3DE0D210F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetLah.AssemblyInfo.Build.Targets", "NetLah.AssemblyInfo.Build.Targets\NetLah.AssemblyInfo.Build.Targets.msbuildproj", "{C08230D6-7912-40A7-BD92-BB501FCC39FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetLah.AssemblyInfo.BuildTime.Target", "NetLah.AssemblyInfo.BuildTime.Target\NetLah.AssemblyInfo.BuildTime.Target.msbuildproj", "{C08230D6-7912-40A7-BD92-BB501FCC39FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

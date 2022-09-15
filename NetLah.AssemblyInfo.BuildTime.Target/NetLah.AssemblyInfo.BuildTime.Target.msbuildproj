@@ -1,22 +1,20 @@
 ﻿<Project Sdk="Microsoft.Build.NoTargets/3.5.6">
 
   <PropertyGroup>
-    <PackageId>NetLah.AssemblyInfo.Build.Targets</PackageId>
+    <PackageId>NetLah.AssemblyInfo.BuildTime.Target</PackageId>
     <PackageTags>assembly-info;assembly-build-datetime;build-datetime;assembly;build;netcore;dotnet;diagnostics;targets</PackageTags>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>MSBuild targets for assembly build-time generation</Description>
+    <Description>MSBuild target for assembly build-time generation</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
 	<NoWarn>$(NoWarn);NU5128;NU5129</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="build\**\*" PackagePath="build" />
-    <Content Include="buildMultiTargeting\**\*" PackagePath="buildMultiTargeting" />
+    <Content Include="buildTransitive\**\*" PackagePath="build" />
     <None Include="..\LICENSE" Pack="true" PackagePath="\" />
     <None Include="README.md" Pack="true" PackagePath="\" />
-    <None Remove="build\**\*" />
-    <None Remove="buildMultiTargeting\**\*" />
+    <None Remove="buildTransitive\**\*" />
   </ItemGroup>
 
 </Project>
