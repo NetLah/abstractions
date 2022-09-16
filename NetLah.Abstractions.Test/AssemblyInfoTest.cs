@@ -104,12 +104,12 @@ public class AssemblyInfoTest
     }
 
     [Fact]
-    public void ApplicationInfoDefaultInstance()
+    public void ApplicationInfoInstanceOrDefault()
     {
         ApplicationInfoReference.Reset();
 
-        var assemblyInfo = ApplicationInfo.Instance;
-        var assemblyInfo1 = ApplicationInfo.Instance;
+        var assemblyInfo = ApplicationInfo.InstanceOrDefault;
+        var assemblyInfo1 = ApplicationInfo.InstanceOrDefault;
 
         Assert.NotNull(assemblyInfo);
         Assert.Same(assemblyInfo, assemblyInfo1);
@@ -117,12 +117,12 @@ public class AssemblyInfoTest
     }
 
     [Fact]
-    public void ApplicationInfoSafeInstance()
+    public void ApplicationInfoInstance_TryInitializing()
     {
         ApplicationInfoReference.Reset();
 
-        var assemblyInfo = ApplicationInfo.SafeInstance;
-        var assemblyInfo1 = ApplicationInfo.SafeInstance;
+        var assemblyInfo = ApplicationInfo.Instance;
+        var assemblyInfo1 = ApplicationInfo.Instance;
 
         Assert.NotNull(assemblyInfo);
         Assert.Same(assemblyInfo, assemblyInfo1);

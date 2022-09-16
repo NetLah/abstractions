@@ -17,9 +17,9 @@ public sealed class ApplicationInfo : IAssemblyInfo
     private static readonly object _staticSyncRoot = new();
     private static ApplicationInfo? _instance;
 
-    public static IAssemblyInfo Instance => _instance ?? EmptyApplicationInfo.Default;
+    public static IAssemblyInfo InstanceOrDefault => _instance ?? EmptyApplicationInfo.Default;
 
-    public static IAssemblyInfo SafeInstance => TryInitialize(null);
+    public static IAssemblyInfo Instance => _instance ?? TryInitialize(null);
 
     /// <summary>
     /// Initialize single instance of ApplicationInfo
@@ -34,18 +34,22 @@ public sealed class ApplicationInfo : IAssemblyInfo
             {
                 throw new InvalidOperationException($"ApplicationInfo is already initialized with assembly: {instance.AssemblyInfo.Name.FullName}");
             }
-
-            return TryInitialize(assembly);
         }
+
+        return TryInitialize(assembly);
     }
 
     public static IAssemblyInfo TryInitialize(Assembly? assembly)
     {
-        lock (_staticSyncRoot)
+        if (_instance == null)
         {
-            _instance ??= new ApplicationInfo(assembly ?? Assembly.GetEntryAssembly());
+            lock (_staticSyncRoot)
+            {
+                _instance ??= new ApplicationInfo(assembly ?? Assembly.GetEntryAssembly());
+            }
         }
-        return Instance;
+
+        return InstanceOrDefault;
     }
 
     private ApplicationInfo(Assembly assembly) => AssemblyInfo = new AssemblyInfo(assembly);
