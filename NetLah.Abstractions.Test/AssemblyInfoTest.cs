@@ -29,16 +29,29 @@ public class AssemblyInfoTest
     {
         ApplicationInfoReference.Reset();
 
-        var assemblyInfo = ApplicationInfo.Initialize(typeof(BuildTimeHelperTest).Assembly);
+        var applicationInfo = ApplicationInfo.Initialize(typeof(BuildTimeHelperTest).Assembly);
 
         Assert.NotNull(ApplicationInfoReference.Instance);
 
-        Assert.NotNull(assemblyInfo);
-        Assert.NotSame(EmptyApplicationInfo.Default, assemblyInfo);
+        Assert.NotNull(applicationInfo);
+        Assert.NotSame(EmptyApplicationInfo.Default, applicationInfo);
 
-        var buildTime = assemblyInfo.BuildTime;
+        var buildTime = applicationInfo.BuildTime;
 
         Assert.NotNull(buildTime);
+    }
+
+    [Fact]
+    public async Task Application_Properties()
+    {
+        ApplicationInfoReference.Reset();
+
+        var applicationInfo = ApplicationInfo.Initialize(typeof(BuildTimeHelperTest).Assembly);
+
+        Assert.NotNull(applicationInfo);
+        Assert.NotNull(applicationInfo.AssemblyInfo);
+        await Task.Delay(200);
+        Assert.NotEqual(TimeSpan.Zero, applicationInfo.Uptime);
     }
 
     [Theory]
@@ -59,14 +72,14 @@ public class AssemblyInfoTest
     {
         ApplicationInfoReference.Reset();
 
-        var assemblyInfo = ApplicationInfo.Initialize(typeof(AssemblyBuildDateAttributeTest).Assembly);
+        var applicationInfo = ApplicationInfo.Initialize(typeof(AssemblyBuildDateAttributeTest).Assembly);
 
         Assert.NotNull(ApplicationInfoReference.Instance);
 
-        Assert.NotNull(assemblyInfo);
-        Assert.NotSame(EmptyApplicationInfo.Default, assemblyInfo);
+        Assert.NotNull(applicationInfo);
+        Assert.NotSame(EmptyApplicationInfo.Default, applicationInfo);
 
-        var buildDate = assemblyInfo.BuildDate;
+        var buildDate = applicationInfo.BuildDate;
 
         Assert.NotNull(buildDate);
     }
@@ -86,10 +99,10 @@ public class AssemblyInfoTest
     {
         ApplicationInfoReference.Reset();
 
-        var assemblyInfo = ApplicationInfo.TryInitialize(typeof(BuildTimeHelperTest).Assembly);
+        var applicationInfo = ApplicationInfo.TryInitialize(typeof(BuildTimeHelperTest).Assembly);
 
-        Assert.NotNull(assemblyInfo);
-        Assert.NotSame(EmptyApplicationInfo.Default, assemblyInfo);
+        Assert.NotNull(applicationInfo);
+        Assert.NotSame(EmptyApplicationInfo.Default, applicationInfo);
     }
 
     [Fact]
@@ -97,10 +110,10 @@ public class AssemblyInfoTest
     {
         ApplicationInfoReference.SetAny();
 
-        var assemblyInfo = ApplicationInfo.TryInitialize(typeof(BuildTimeHelperTest).Assembly);
+        var applicationInfo = ApplicationInfo.TryInitialize(typeof(BuildTimeHelperTest).Assembly);
 
-        Assert.NotNull(assemblyInfo);
-        Assert.NotSame(EmptyApplicationInfo.Default, assemblyInfo);
+        Assert.NotNull(applicationInfo);
+        Assert.NotSame(EmptyApplicationInfo.Default, applicationInfo);
     }
 
     [Fact]
@@ -108,12 +121,12 @@ public class AssemblyInfoTest
     {
         ApplicationInfoReference.Reset();
 
-        var assemblyInfo = ApplicationInfo.InstanceOrDefault;
-        var assemblyInfo1 = ApplicationInfo.InstanceOrDefault;
+        var applicationInfo = ApplicationInfo.InstanceOrDefault;
+        var applicationInfo1 = ApplicationInfo.InstanceOrDefault;
 
-        Assert.NotNull(assemblyInfo);
-        Assert.Same(assemblyInfo, assemblyInfo1);
-        Assert.Same(EmptyApplicationInfo.Default, assemblyInfo);
+        Assert.NotNull(applicationInfo);
+        Assert.Same(applicationInfo, applicationInfo1);
+        Assert.Same(EmptyApplicationInfo.Default, applicationInfo);
     }
 
     [Fact]
@@ -121,11 +134,11 @@ public class AssemblyInfoTest
     {
         ApplicationInfoReference.Reset();
 
-        var assemblyInfo = ApplicationInfo.Instance;
-        var assemblyInfo1 = ApplicationInfo.Instance;
+        var applicationInfo = ApplicationInfo.Instance;
+        var applicationInfo1 = ApplicationInfo.Instance;
 
-        Assert.NotNull(assemblyInfo);
-        Assert.Same(assemblyInfo, assemblyInfo1);
-        Assert.NotSame(EmptyApplicationInfo.Default, assemblyInfo);
+        Assert.NotNull(applicationInfo);
+        Assert.Same(applicationInfo, applicationInfo1);
+        Assert.NotSame(EmptyApplicationInfo.Default, applicationInfo);
     }
 }

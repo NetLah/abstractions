@@ -2,9 +2,17 @@
 
 namespace NetLah.Diagnostics;
 
-internal sealed class EmptyApplicationInfo : IAssemblyInfo
+internal sealed class EmptyApplicationInfo : IApplicationInfo
 {
-    public static readonly IAssemblyInfo Default = new EmptyApplicationInfo();
+    private readonly ValueStopwatch _uptime = ValueStopwatch.StartNew();
+
+    public static readonly IApplicationInfo Default = new EmptyApplicationInfo();
+
+    public DateTimeOffset StartTime { get; } = DateTimeOffset.Now;
+
+    public TimeSpan Uptime => _uptime.GetElapsedTime();
+
+    public IAssemblyInfo AssemblyInfo { get; } = new AssemblyInfo(typeof(EmptyApplicationInfo).Assembly);
 
     public string InformationalVersion => "InformationalVersion";
 

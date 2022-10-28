@@ -12,21 +12,22 @@ namespace NetLah.Diagnostics;
 /// </code>
 /// </example>
 /// <returns></returns>
-public sealed class ApplicationInfo : IAssemblyInfo
+public sealed class ApplicationInfo : IApplicationInfo
 {
     private static readonly object _staticSyncRoot = new();
     private static ApplicationInfo? _instance;
+    private readonly ValueStopwatch _uptime = ValueStopwatch.StartNew();
 
-    public static IAssemblyInfo InstanceOrDefault => _instance ?? EmptyApplicationInfo.Default;
+    public static IApplicationInfo InstanceOrDefault => _instance ?? EmptyApplicationInfo.Default;
 
-    public static IAssemblyInfo Instance => _instance ?? TryInitialize(null);
+    public static IApplicationInfo Instance => _instance ?? TryInitialize(null);
 
     /// <summary>
     /// Initialize single instance of ApplicationInfo
     /// </summary>
     /// <param name="assembly">Provide null for Assembly.GetEntryAssembly()</param>
     /// <returns></returns>
-    public static IAssemblyInfo Initialize(Assembly? assembly)
+    public static IApplicationInfo Initialize(Assembly? assembly)
     {
         lock (_staticSyncRoot)
         {
@@ -39,7 +40,7 @@ public sealed class ApplicationInfo : IAssemblyInfo
         return TryInitialize(assembly);
     }
 
-    public static IAssemblyInfo TryInitialize(Assembly? assembly)
+    public static IApplicationInfo TryInitialize(Assembly? assembly)
     {
         if (_instance == null)
         {
@@ -53,6 +54,10 @@ public sealed class ApplicationInfo : IAssemblyInfo
     }
 
     private ApplicationInfo(Assembly assembly) => AssemblyInfo = new AssemblyInfo(assembly);
+
+    public DateTimeOffset StartTime { get; } = DateTimeOffset.Now;
+
+    public TimeSpan Uptime => _uptime.GetElapsedTime();
 
     public IAssemblyInfo AssemblyInfo { get; }
 
