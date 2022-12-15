@@ -4,7 +4,7 @@
     <PackageId>NetLah.Abstractions</PackageId>
     <PackageTags>application-info;assembly-info;assembly-build-datetime;build-datetime;assembly;build;netcore;dotnet;aspnetcore;diagnostics</PackageTags>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>Classes for retrieving .NET assembly build time ApplicationInfo, AssemblyInfo</Description>
+    <Description>Classes for retrieving .NET assembly build time ApplicationInfo and AssemblyInfo</Description>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../NetLah.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>NetLah</RootNamespace>
