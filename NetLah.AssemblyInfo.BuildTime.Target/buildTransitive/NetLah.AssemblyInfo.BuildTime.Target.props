@@ -27,12 +27,4 @@
 
   </Target>
 
-  <!--<Target Name="GeneratedAssemblyBuildTimeAttribute"
-          BeforeTargets="CopyFilesToOutputDirectory"
-          Condition="'$(GeneratedAssemblyBuildTimeAttribute)' == 'true'">
-
-    <Message Importance="high" Text="$(MSBuildProjectName) [buildTime] := $(AssemblyBuildTimeValue) ($(TargetFramework))" />
-
-  </Target>-->
-
 </Project>
