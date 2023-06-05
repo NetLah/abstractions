@@ -1,13 +1,14 @@
-﻿<Project Sdk="Microsoft.Build.NoTargets/3.5.6">
+﻿<Project Sdk="Microsoft.Build.NoTargets/3.7.0">
 
   <PropertyGroup>
     <PackageId>NetLah.AssemblyInfo.BuildTime.Target</PackageId>
     <PackageTags>assembly-info;assembly-build-datetime;build-datetime;assembly;build;netcore;dotnet;diagnostics;targets</PackageTags>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <MinVerTagPrefix>buildtime-</MinVerTagPrefix>
     <Description>MSBuild target for assembly build-time generation</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-	<NoWarn>$(NoWarn);NU5128;NU5129</NoWarn>
+    <NoWarn>$(NoWarn);NU5128;NU5129</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

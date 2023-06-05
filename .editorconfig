@@ -5,5 +5,5 @@
 indent_style = space
 
 # Xml files
-[{*.xml,*.csproj,*.props,*.targets}]
+[{*.xml,*.csproj,*.props,*.targets,*.msbuildproj}]
 indent_size = 2
