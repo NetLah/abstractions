@@ -22,7 +22,7 @@ This solution come from the idea of [Gérald Barré on Meziantou's blog Getting 
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="NetLah.Abstractions" Version="0.2.0" />
+  <PackageReference Include="NetLah.Abstractions" Version="1.0.0" />
   <PackageReference Include="NetLah.AssemblyInfo.BuildTime.Target" Version="1.0.0" PrivateAssets="All" />
 </ItemGroup>
 ```
@@ -81,7 +81,7 @@ Version:0.2.0-rc2.2 BuildTime:2021-11-08T21:26:56+08:00; Framework:.NETCoreApp,V
 
 ```xml
 <ItemGroup>
-  <PackageReference Update="NetLah.Abstractions" Version="0.2.0" />
+  <PackageReference Update="NetLah.Abstractions" Version="1.0.0" />
   <PackageReference Update="NetLah.AssemblyInfo.BuildTime.Target" Version="1.0.0" PrivateAssets="All" />
 </ItemGroup>
 ```
@@ -90,7 +90,7 @@ Version:0.2.0-rc2.2 BuildTime:2021-11-08T21:26:56+08:00; Framework:.NETCoreApp,V
 
 ```xml
 <ItemGroup>
-  <PackageReference Update="NetLah.Abstractions" Version="0.2.0" />
+  <PackageReference Update="NetLah.Abstractions" Version="1.0.0" />
   <PackageReference Include="NetLah.AssemblyInfo.BuildTime.Target" Version="1.0.0" PrivateAssets="All" />
 </ItemGroup>
 ```
