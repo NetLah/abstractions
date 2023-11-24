@@ -1,0 +1,7 @@
+<Project>
+
+  <PropertyGroup>
+    <ExcludeAssemblyBuildTime>True</ExcludeAssemblyBuildTime>
+  </PropertyGroup>
+
+</Project>

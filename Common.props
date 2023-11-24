@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <CurrentFrameworkVersion>6.0.20;7.0.9;8.0.0-preview.6</CurrentFrameworkVersion>
+    <CurrentFrameworkVersion>6.0.25;7.0.14;8.0.0</CurrentFrameworkVersion>
     <ImportedCommonProps>True</ImportedCommonProps>
     
     <NET_ID>$([MSBuild]::GetTargetFrameworkIdentifier($(TargetFramework)))</NET_ID>
@@ -31,4 +31,6 @@
 
   </PropertyGroup>
 
+  <Import Project="$(MSBuildThisFileDirectory)Common.override.props" Condition="Exists('$(MSBuildThisFileDirectory)Common.override.props')" />
+  
 </Project>
