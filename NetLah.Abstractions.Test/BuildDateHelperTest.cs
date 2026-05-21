@@ -7,6 +7,18 @@ namespace NetLah.Abstractions.Test;
 public class BuildDateHelperTest
 {
     [Fact]
+    public void ParseAssemblyMetadataAttribute_Failed()
+    {
+        var attrs = new[] {
+            new AssemblyMetadataAttribute("Key1", "Value2"),
+        };
+
+        var buildDate = BuildDateHelper.ParseBuildDate(attrs);
+
+        Assert.Null(buildDate);
+    }
+
+    [Fact]
     public void ParseDateTimeUtcToDateTimeOffset_AssemblyMetadataAttribute_Success()
     {
         var attrs = new[] {
@@ -17,6 +29,37 @@ public class BuildDateHelperTest
         var buildDate = BuildDateHelper.ParseBuildDate(attrs);
 
         var expected = new DateTimeOffset(2021, 5, 8, 5, 25, 59, TimeSpan.Zero);
+        Assert.Equal(expected, buildDate);
+        Assert.Equal(expected.Offset, buildDate?.Offset);
+    }
+
+    [Fact]
+    public void ParseAssemblyMetadataAttribute_BuildTime_Success()
+    {
+        var attrs = new[] {
+            new AssemblyMetadataAttribute("Key1", "Value2"),
+            new AssemblyMetadataAttribute("BuildTime", "2021-05-08T05:25:59")
+        };
+
+        var buildTime = BuildDateHelper.ParseBuildDate(attrs);
+
+        var expected = new DateTimeOffset(2021, 5, 8, 5, 25, 59, TimeSpan.Zero);
+        Assert.Equal(expected, buildTime);
+        Assert.Equal(expected.Offset, buildTime?.Offset);
+    }
+
+    [Fact]
+    public void ParseAssemblyMetadataAttribute_BuildDate_BuildTime_Success()
+    {
+        var attrs = new[] {
+            new AssemblyMetadataAttribute("Key1", "Value2"),
+            new AssemblyMetadataAttribute("BuildDate", "2021-05-08T05:25:58"),
+            new AssemblyMetadataAttribute("BuildTime", "2021-05-08T05:25:59")
+        };
+
+        var buildDate = BuildDateHelper.ParseBuildDate(attrs);
+
+        var expected = new DateTimeOffset(2021, 5, 8, 5, 25, 58, TimeSpan.Zero);
         Assert.Equal(expected, buildDate);
         Assert.Equal(expected.Offset, buildDate?.Offset);
     }

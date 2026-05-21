@@ -6,15 +6,17 @@ namespace NetLah.Abstractions.Test;
 
 public class AssemblyInfoTest
 {
-    public static IEnumerable<object[]> AssemblyData =>
-        new List<object[]>
+    public class AssemblyInfoTestData : TheoryData<Assembly>
+    {
+        public AssemblyInfoTestData()
         {
-            new object[] { typeof(AssemblyInfo).Assembly},
-            new object[] { typeof(AssemblyInfoTest).Assembly },
-        };
+            Add(typeof(AssemblyInfo).Assembly);
+            Add(typeof(AssemblyInfoTest).Assembly);
+        }
+    }
 
     [Theory]
-    [MemberData(nameof(AssemblyData))]
+    [ClassData(typeof(AssemblyInfoTestData))]
     public void AssemblyBuildDate_Exist(Assembly assembly)
     {
         var assemblyInfo = new AssemblyInfo(assembly);
@@ -22,6 +24,34 @@ public class AssemblyInfoTest
         var buildDate = assemblyInfo.BuildDate;
 
         Assert.NotNull(buildDate);
+    }
+
+    [Theory]
+    [ClassData(typeof(AssemblyInfoTestData))]
+    public void AssemblyBuildDate_MustHave(Assembly assembly)
+    {
+        var attrs0 = assembly.GetCustomAttributes<AssemblyMetadataAttribute>().ToArray();
+        var attrs = attrs0.Where(a => a.Key != "BuildTime").ToArray();
+
+        var buildTime = NetLah.Runtime.BuildDateHelper.ParseBuildDate(attrs);
+
+        Assert.NotNull(buildTime);
+        Assert.DoesNotContain(attrs, a => a.Key == "BuildTime");
+        Assert.Contains(attrs, a => a.Key == "BuildDate");
+    }
+
+    [Theory]
+    [ClassData(typeof(AssemblyInfoTestData))]
+    public void AssemblyBuildTime_Compatible(Assembly assembly)
+    {
+        var attrs0 = assembly.GetCustomAttributes<AssemblyMetadataAttribute>().ToArray();
+        var attrs = attrs0.Where(a => a.Key != "BuildDate").ToArray();
+
+        var buildTime = NetLah.Runtime.BuildDateHelper.ParseBuildDate(attrs);
+
+        Assert.NotNull(buildTime);
+        Assert.DoesNotContain(attrs, a => a.Key == "BuildDate");
+        Assert.Contains(attrs, a => a.Key == "BuildTime");
     }
 
     [Fact]
@@ -55,7 +85,7 @@ public class AssemblyInfoTest
     }
 
     [Theory]
-    [MemberData(nameof(AssemblyData))]
+    [ClassData(typeof(AssemblyInfoTestData))]
     [Obsolete("Use BuildDate property")]
     public void AssemblyBuildTime_Exist(Assembly assembly)
     {
