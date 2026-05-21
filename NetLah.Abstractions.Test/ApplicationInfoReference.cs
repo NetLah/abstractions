@@ -32,7 +32,7 @@ internal static class ApplicationInfoReference
     {
         if (Instance == null)
         {
-            ApplicationInfo.Initialize(typeof(BuildTimeHelperTest).Assembly);
+            ApplicationInfo.Initialize(typeof(BuildDateHelperTest).Assembly);
         }
     }
 }

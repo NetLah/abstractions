@@ -1,0 +1,35 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <AssemblyBuildDateFormat Condition="'$(AssemblyBuildDateFormat)' == ''">^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}((:|\.)\d{1,7})?Z?$</AssemblyBuildDateFormat>
+    <AssemblyBuildDateUseEnv Condition="'$(AssemblyBuildDateUseEnv)' == '' And '$(ASSEMBLY_BuildDate)' != ''">$([System.Text.RegularExpressions.Regex]::IsMatch($(ASSEMBLY_BuildDate),$(AssemblyBuildDateFormat)))</AssemblyBuildDateUseEnv>
+    <AssemblyBuildDateValue Condition="'$(AssemblyBuildDateValue)' == '' And '$(AssemblyBuildDateUseEnv)' == 'true'">$(ASSEMBLY_BuildDate)</AssemblyBuildDateValue>
+    <AssemblyBuildDateValue Condition="'$(AssemblyBuildDateValue)' == ''">$([System.DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffffffZ"))</AssemblyBuildDateValue>
+    <GenerateAssemblyBuildDateAttribute Condition="'$(GenerateAssemblyBuildDateAttribute)' == ''">true</GenerateAssemblyBuildDateAttribute>
+  </PropertyGroup>
+
+  <Target Name="GenerateAssemblyBuildDateAttribute"
+          BeforeTargets="GetAssemblyAttributes"
+          Condition="('$(Language)'=='VB' Or '$(Language)'=='C#') And '$(GenerateAssemblyBuildDateAttribute)' == 'true' And '$(GeneratedAssemblyBuildDateAttribute)' == ''">
+
+    <PropertyGroup>
+      <GeneratedAssemblyBuildDateAttribute Condition="'$(GeneratedAssemblyBuildDateAttribute)' == ''">true</GeneratedAssemblyBuildDateAttribute>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(AssemblyBuildDateValue)' != ''">
+      <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+        <_Parameter1>BuildDate</_Parameter1>
+        <_Parameter2>$(AssemblyBuildDateValue)</_Parameter2>
+      </AssemblyAttribute>
+      <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+        <!-- Compatiple with NetLah.AssemblyInfo.BuildTime.Target@1.0.0 June/2023 -->
+        <_Parameter1>BuildTime</_Parameter1>
+        <_Parameter2>$(AssemblyBuildDateValue)</_Parameter2>
+      </AssemblyAttribute>
+    </ItemGroup>
+
+    <Message Importance="high" Text="$(MSBuildProjectName) [BuildDate] := $(AssemblyBuildDateValue) ($(TargetFramework))" />
+
+  </Target>
+
+</Project>

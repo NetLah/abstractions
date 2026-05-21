@@ -14,7 +14,7 @@
 [AttributeUsage(AttributeTargets.Assembly)]
 public sealed class AssemblyBuildDateAttribute : Attribute
 {
-    public AssemblyBuildDateAttribute(string value) => DateTime = BuildTimeHelper.ParseBuildTime(value);
+    public AssemblyBuildDateAttribute(string value) => DateTime = BuildDateHelper.ParseBuildDate(value);
 
     public DateTimeOffset? DateTime { get; }
 }

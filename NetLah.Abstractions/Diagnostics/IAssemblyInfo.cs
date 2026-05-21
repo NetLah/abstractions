@@ -11,9 +11,10 @@ public interface IAssemblyInfo
     AssemblyName Name { get; }
     string ImageRuntimeVersion { get; }
     string FrameworkName { get; }
+
+    [Obsolete("Use BuildDate property")]
     DateTimeOffset? BuildTime { get; }
 
-    [Obsolete("Use BuildTime property")]
     DateTimeOffset? BuildDate { get; }
 
     // format: "1970-01-01T23:59:59+08:00"

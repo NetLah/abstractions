@@ -18,9 +18,9 @@ namespace NetLah.Runtime;
 /// </code>
 /// </summary>
 
-internal static class BuildTimeHelper
+internal static class BuildDateHelper
 {
-    public static DateTimeOffset? ParseBuildTime(string? value)
+    public static DateTimeOffset? ParseBuildDate(string? value)
         => !string.IsNullOrEmpty(value) &&
             DateTimeOffset.TryParseExact(value,
                 new string[] {
@@ -41,9 +41,12 @@ internal static class BuildTimeHelper
             result :
             null;
 
-    public static DateTimeOffset? ParseBuildTime(IEnumerable<AssemblyMetadataAttribute> attributes)
-        => ParseBuildTime(attributes?.FirstOrDefault(a => a.Key == "BuildTime"));
+    public static DateTimeOffset? ParseBuildDate(IEnumerable<AssemblyMetadataAttribute> attributes)
+        => ParseBuildDate(
+            attributes?.FirstOrDefault(a => a.Key == "BuildDate")
+            ?? attributes?.FirstOrDefault(a => a.Key == "BuildTime")
+            );
 
-    public static DateTimeOffset? ParseBuildTime(AssemblyMetadataAttribute? attribute)
-        => ParseBuildTime(attribute?.Value);
+    public static DateTimeOffset? ParseBuildDate(AssemblyMetadataAttribute? attribute)
+        => ParseBuildDate(attribute?.Value);
 }

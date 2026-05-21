@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.Build.NoTargets/3.7.0">
 
   <PropertyGroup>
-    <PackageId>NetLah.AssemblyInfo.BuildTime.Target</PackageId>
-    <PackageTags>assembly-info;assembly-build-datetime;build-datetime;assembly;build;netcore;dotnet;diagnostics;targets</PackageTags>
+    <PackageId>NetLah.AssemblyInfo.BuildDate.Target</PackageId>
+    <PackageTags>assembly-info;assembly-build-datetime;assembly-build-date;build-datetime;build-date;assembly;build;netcore;dotnet;diagnostics;targets</PackageTags>
     <TargetFramework>netstandard2.0</TargetFramework>
     <MinVerTagPrefix>buildtime-</MinVerTagPrefix>
     <Description>MSBuild target for assembly build-time generation</Description>
