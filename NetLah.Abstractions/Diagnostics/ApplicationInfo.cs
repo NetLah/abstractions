@@ -75,10 +75,10 @@ public sealed class ApplicationInfo : IApplicationInfo
 
     public string FrameworkName => AssemblyInfo.FrameworkName;
 
-    public DateTimeOffset? BuildTime => AssemblyInfo.BuildTime;
+    [Obsolete("Use BuildDate property")]
+    public DateTimeOffset? BuildTime => AssemblyInfo.BuildDate;
 
-    [Obsolete("Use BuildTime property")]
-    public DateTimeOffset? BuildDate => AssemblyInfo.BuildTime;
+    public DateTimeOffset? BuildDate => AssemblyInfo.BuildDate;
 
     public string BuildTimestampLocal => AssemblyInfo.BuildTimestampLocal;
 }

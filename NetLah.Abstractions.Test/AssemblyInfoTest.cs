@@ -15,48 +15,6 @@ public class AssemblyInfoTest
 
     [Theory]
     [MemberData(nameof(AssemblyData))]
-    public void AssemblyBuildTime_Exist(Assembly assembly)
-    {
-        var assemblyInfo = new AssemblyInfo(assembly);
-
-        var buildTime = assemblyInfo.BuildTime;
-
-        Assert.NotNull(buildTime);
-    }
-
-    [Fact]
-    public void ApplicationBuildTime_Exist()
-    {
-        ApplicationInfoReference.Reset();
-
-        var applicationInfo = ApplicationInfo.Initialize(typeof(BuildTimeHelperTest).Assembly);
-
-        Assert.NotNull(ApplicationInfoReference.Instance);
-
-        Assert.NotNull(applicationInfo);
-        Assert.NotSame(EmptyApplicationInfo.Default, applicationInfo);
-
-        var buildTime = applicationInfo.BuildTime;
-
-        Assert.NotNull(buildTime);
-    }
-
-    [Fact]
-    public async Task Application_Properties()
-    {
-        ApplicationInfoReference.Reset();
-
-        var applicationInfo = ApplicationInfo.Initialize(typeof(BuildTimeHelperTest).Assembly);
-
-        Assert.NotNull(applicationInfo);
-        Assert.NotNull(applicationInfo.AssemblyInfo);
-        await Task.Delay(200);
-        Assert.NotEqual(TimeSpan.Zero, applicationInfo.Uptime);
-    }
-
-    [Theory]
-    [MemberData(nameof(AssemblyData))]
-    [Obsolete("Use BuildTime property")]
     public void AssemblyBuildDate_Exist(Assembly assembly)
     {
         var assemblyInfo = new AssemblyInfo(assembly);
@@ -67,12 +25,11 @@ public class AssemblyInfoTest
     }
 
     [Fact]
-    [Obsolete("Use BuildTime property")]
     public void ApplicationBuildDate_Exist()
     {
         ApplicationInfoReference.Reset();
 
-        var applicationInfo = ApplicationInfo.Initialize(typeof(AssemblyBuildDateAttributeTest).Assembly);
+        var applicationInfo = ApplicationInfo.Initialize(typeof(BuildDateHelperTest).Assembly);
 
         Assert.NotNull(ApplicationInfoReference.Instance);
 
@@ -85,11 +42,54 @@ public class AssemblyInfoTest
     }
 
     [Fact]
+    public async Task Application_Properties()
+    {
+        ApplicationInfoReference.Reset();
+
+        var applicationInfo = ApplicationInfo.Initialize(typeof(BuildDateHelperTest).Assembly);
+
+        Assert.NotNull(applicationInfo);
+        Assert.NotNull(applicationInfo.AssemblyInfo);
+        await Task.Delay(200);
+        Assert.NotEqual(TimeSpan.Zero, applicationInfo.Uptime);
+    }
+
+    [Theory]
+    [MemberData(nameof(AssemblyData))]
+    [Obsolete("Use BuildDate property")]
+    public void AssemblyBuildTime_Exist(Assembly assembly)
+    {
+        var assemblyInfo = new AssemblyInfo(assembly);
+
+        var buildTime = assemblyInfo.BuildTime;
+
+        Assert.NotNull(buildTime);
+    }
+
+    [Fact]
+    [Obsolete("Use BuildDate property")]
+    public void ApplicationBuildTime_Exist()
+    {
+        ApplicationInfoReference.Reset();
+
+        var applicationInfo = ApplicationInfo.Initialize(typeof(AssemblyBuildDateAttributeTest).Assembly);
+
+        Assert.NotNull(ApplicationInfoReference.Instance);
+
+        Assert.NotNull(applicationInfo);
+        Assert.NotSame(EmptyApplicationInfo.Default, applicationInfo);
+
+        var buildTime = applicationInfo.BuildTime;
+
+        Assert.NotNull(buildTime);
+    }
+
+    [Fact]
     public void InitializeApplicationInfo_Exception()
     {
         ApplicationInfoReference.SetAny();
 
-        var ex = Assert.Throws<InvalidOperationException>(() => ApplicationInfo.Initialize(typeof(BuildTimeHelperTest).Assembly));
+        var ex = Assert.Throws<InvalidOperationException>(() => ApplicationInfo.Initialize(typeof(BuildDateHelperTest).Assembly));
 
         Assert.StartsWith("ApplicationInfo is already initialized with assembly: ", ex.Message);
     }
@@ -99,7 +99,7 @@ public class AssemblyInfoTest
     {
         ApplicationInfoReference.Reset();
 
-        var applicationInfo = ApplicationInfo.TryInitialize(typeof(BuildTimeHelperTest).Assembly);
+        var applicationInfo = ApplicationInfo.TryInitialize(typeof(BuildDateHelperTest).Assembly);
 
         Assert.NotNull(applicationInfo);
         Assert.NotSame(EmptyApplicationInfo.Default, applicationInfo);
@@ -110,7 +110,7 @@ public class AssemblyInfoTest
     {
         ApplicationInfoReference.SetAny();
 
-        var applicationInfo = ApplicationInfo.TryInitialize(typeof(BuildTimeHelperTest).Assembly);
+        var applicationInfo = ApplicationInfo.TryInitialize(typeof(BuildDateHelperTest).Assembly);
 
         Assert.NotNull(applicationInfo);
         Assert.NotSame(EmptyApplicationInfo.Default, applicationInfo);

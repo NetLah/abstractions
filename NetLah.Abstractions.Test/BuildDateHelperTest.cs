@@ -4,21 +4,21 @@ using Xunit;
 
 namespace NetLah.Abstractions.Test;
 
-public class BuildTimeHelperTest
+public class BuildDateHelperTest
 {
     [Fact]
     public void ParseDateTimeUtcToDateTimeOffset_AssemblyMetadataAttribute_Success()
     {
         var attrs = new[] {
             new AssemblyMetadataAttribute("Key1", "Value2"),
-            new AssemblyMetadataAttribute("BuildTime", "2021-05-08T05:25:59")
+            new AssemblyMetadataAttribute("BuildDate", "2021-05-08T05:25:59")
         };
 
-        var buildTime = BuildTimeHelper.ParseBuildTime(attrs);
+        var buildDate = BuildDateHelper.ParseBuildDate(attrs);
 
         var expected = new DateTimeOffset(2021, 5, 8, 5, 25, 59, TimeSpan.Zero);
-        Assert.Equal(expected, buildTime);
-        Assert.Equal(expected.Offset, buildTime?.Offset);
+        Assert.Equal(expected, buildDate);
+        Assert.Equal(expected.Offset, buildDate?.Offset);
     }
 
     public static IEnumerable<object?[]> DateTimeFormats =>
@@ -55,9 +55,9 @@ public class BuildTimeHelperTest
     [MemberData(nameof(DateTimeFormats))]
     public void ParseDateTimeUtcToDateTimeOffsetSuccess(string value, DateTimeOffset? expected)
     {
-        var buildTime = BuildTimeHelper.ParseBuildTime(value);
+        var buildDate = BuildDateHelper.ParseBuildDate(value);
 
-        Assert.Equal(expected, buildTime);
-        Assert.Equal(expected?.Offset, buildTime?.Offset);
+        Assert.Equal(expected, buildDate);
+        Assert.Equal(expected?.Offset, buildDate?.Offset);
     }
 }

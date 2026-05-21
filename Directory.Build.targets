@@ -68,7 +68,7 @@
     <!--build related-->
     <PackageReference Update="Bullseye" Version="6.*" />
     <PackageReference Include="MinVer" Version="6.*" PrivateAssets="All" />
-    <PackageReference Include="NetLah.AssemblyInfo.BuildTime.Target" Version="1.*" PrivateAssets="All" Condition="'$(ExcludeAssemblyBuildTime)' != true" />
+    <PackageReference Include="NetLah.AssemblyInfo.BuildDate.Target" Version="1.*" PrivateAssets="All" Condition="'$(ExcludeAssemblyBuildDate)' != true And '$(ExcludeAssemblyBuildTime)' != true" />
     <PackageReference Update="Microsoft.SourceLink.Gitea" Version="8.*" PrivateAssets="All" />
     <PackageReference Update="Microsoft.SourceLink.GitHub" Version="8.*" PrivateAssets="All" />
     <PackageReference Update="SimpleExec" Version="12.*" />

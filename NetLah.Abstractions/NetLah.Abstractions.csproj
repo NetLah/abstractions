@@ -22,6 +22,6 @@
     <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
-  <Import Project="../NetLah.AssemblyInfo.BuildTime.Target/buildTransitive/NetLah.AssemblyInfo.BuildTime.Target.props" />
+  <Import Project="../NetLah.AssemblyInfo.BuildDate.Target/buildTransitive/NetLah.AssemblyInfo.BuildDate.Target.props" />
 
 </Project>
