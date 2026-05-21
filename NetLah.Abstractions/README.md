@@ -48,7 +48,7 @@ Time Elapsed 00:00:01.84
 ```csharp
 var asm = new AssemblyInfo(typeof(AssemblyInfo).Assembly);
 Console.WriteLine($"AssemblyTitle:{asm.Title}");
-Console.WriteLine($"Version:{asm.InformationalVersion} BuildTime:{asm.BuildTimestampLocal}; Framework:{asm.FrameworkName}");
+Console.WriteLine($"Version:{asm.InformationalVersion} BuildDate:{asm.BuildTimestampLocal}; Framework:{asm.FrameworkName}");
 ```
 
 The output:
